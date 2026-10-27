@@ -1,0 +1,76 @@
+:host { display: block; }
+.home-page { color: var(--storefront-ink); }
+.home-section { width: 100%; max-width: var(--storefront-container); margin-inline: auto; }
+.home-section + .home-section { margin-top: clamp(3.5rem, 6vw, 5rem); }
+.home-hero {
+  display: flex; flex-direction: column; align-items: center;
+  padding-block: clamp(1.75rem, 4vw, 3.5rem) 0.5rem; text-align: center;
+}
+.home-introduction { width: 100%; max-width: 48rem; }
+.home-introduction h1 {
+  margin: 0; color: var(--storefront-action);
+  font: 700 clamp(2rem, 4vw, 3.5rem)/1.3 var(--storefront-font);
+  letter-spacing: -0.025em; text-wrap: balance;
+}
+.home-introduction p {
+  max-width: 44ch; margin: 1.25rem auto 0; color: var(--storefront-muted);
+  font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.8; text-wrap: pretty;
+}
+.home-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+.home-actions .storefront-button { min-height: 3.25rem; padding-inline: 1.5rem; }
+.home-actions .material-symbols-outlined { font-size: 1.25rem; }
+.home-image-stream { margin: 2.5rem 0 1.25rem; max-width: 60rem; padding-block: 0; }
+.home-image-stream > div.absolute { display: none; }
+.home-image-stream .animate-single-marquee {
+  animation: none; width: 100%; display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px;
+}
+.home-image-stream .animate-single-marquee > div { animation: none; min-width: 0; }
+.home-image-stream .animate-single-marquee > div:nth-child(n+8) { display: none; }
+.home-image-stream img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 12px; box-shadow: none; }
+/* The brand is already visible in the navigation; keep discovery visually primary. */
+.home-wordmark { margin: 0 0 1rem; font: 700 1.125rem/1.5 var(--storefront-font); color: var(--storefront-action); }
+.home-categories { margin-top: 1.25rem; gap: 0.625rem; }
+.home-categories > a { min-height: 2.75rem; padding: 0.625rem 1rem; border-radius: 10px; background: #fffaf0; font-size: 0.8125rem; font-weight: 400; box-shadow: none; }
+.home-categories > a:hover { background: #f2e8dd; border-color: var(--storefront-action); }
+.home-categories > a:focus-visible { outline: 2px solid var(--storefront-action); outline-offset: 3px; }
+.home-sale > div { background: var(--storefront-action); border-radius: 12px; box-shadow: none; }
+.home-sale h2 { font-weight: 700; }
+.home-sale .animate-pulse { animation: none; background: var(--storefront-wood); box-shadow: none; border-radius: 10px; }
+.home-sale .text-purple-200 { color: #f2e3dc; }
+.home-bespoke > div { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.home-bespoke > div > div:first-child {
+  align-items: flex-start; gap: 1.5rem; border-bottom: 1px solid var(--storefront-border);
+  padding-bottom: 1.5rem; margin-bottom: 1.75rem;
+}
+.home-bespoke > div > div:first-child > div > div { flex-wrap: wrap; gap: 0.75rem; }
+.home-bespoke > div > div:first-child > div > div > span { background: #f2e8dd; color: #624e3c; border-radius: 8px; font-weight: 400; }
+.home-bespoke h2, .home-recommendations h2 {
+  color: var(--storefront-action); max-width: 34ch;
+  font-size: clamp(1.375rem, 2.2vw, 1.875rem); line-height: 1.5;
+  font-weight: 700; letter-spacing: -0.02em; text-wrap: balance;
+}
+.home-bespoke p, .home-recommendations p {
+  max-width: 65ch; margin-top: 0.75rem; color: var(--storefront-muted);
+  font-size: 0.9375rem; line-height: 1.8;
+}
+.home-bespoke > div > div:first-child > a { min-height: 2.75rem; font-size: 0.875rem; box-shadow: none; }
+.home-recommendations > div:first-child { align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+.home-recommendations > div:first-child > a { min-height: 2.75rem; padding-block: 0.75rem; font-size: 0.875rem; }
+.home-assurances { padding-top: 2rem; border-top: 1px solid var(--storefront-border); }
+.home-assurances > div > div { padding: 1rem 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.home-assurances > div > div > div:first-child { background: #f2e8dd; color: #765c31; border-radius: 12px; }
+.home-assurances h4 { line-height: 1.6; }
+.home-assurances p { color: var(--storefront-muted); font-size: 0.8125rem; line-height: 1.8; }
+@media (max-width: 639px) {
+  .home-hero { padding-top: 1.5rem; }
+  .home-introduction h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); letter-spacing: -0.02em; }
+  .home-actions { flex-direction: column; width: 100%; }
+  .home-actions .storefront-button { width: 100%; }
+  .home-image-stream { margin-top: 2rem; }
+  .home-image-stream .animate-single-marquee { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .home-image-stream .animate-single-marquee > div:nth-child(n+4) { display: none; }
+  .home-categories { padding-inline: 0; }
+  .home-categories > a { padding-inline: 0.75rem; }
+  .home-bespoke h2 { overflow-wrap: anywhere; }
+}

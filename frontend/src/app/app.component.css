@@ -1,0 +1,17 @@
+/* Root component specific styles */
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+/* Only the homepage adopts the section container in this phase. */
+.storefront-home-main { padding: clamp(1rem, 3vw, 2.5rem); }
+.storefront-footer {
+  background: var(--storefront-surface); border-color: var(--storefront-border);
+  backdrop-filter: none;
+}
+.storefront-footer > div { max-width: var(--storefront-container); }
+.storefront-footer a { text-underline-offset: 0.25em; }
+.storefront-footer a:focus-visible {
+  outline: 2px solid var(--storefront-action); outline-offset: 4px; border-radius: 2px;
+}

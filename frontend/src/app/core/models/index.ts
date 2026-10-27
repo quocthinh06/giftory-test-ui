@@ -1,0 +1,425 @@
+import { VoucherOffer } from '../services/voucher.service';
+export interface User {
+  _id: string;
+  name: string;
+  fullName?: string;
+  email: string;
+  phone?: string;
+  avatar?: string;
+  role: 'CUSTOMER' | 'ADMIN';
+  loyaltyPoints: number;
+  loyaltyTier: 'BRONZE' | 'SILVER' | 'GOLD' | 'DIAMOND';
+  isActive?: boolean;
+  createdAt?: string;
+  address?: {
+    street?: string;
+    ward?: string;
+    district?: string;
+    city?: string;
+    detailAddress?: string;
+  };
+}
+
+export interface Category {
+  _id: string;
+  name: string;
+  slug: string;
+  emoji?: string;
+  icon?: string;
+  description?: string;
+  imageUrl?: string;
+  order?: number;
+  isActive?: boolean;
+  productCount?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ProductVariant {
+  color?: string;
+  size?: string;
+  images?: string[];
+  name: string;
+  colorHex?: string;
+  price: number;
+  stock: number;
+  sku?: string;
+  image?: string;
+  status?: 'ACTIVE' | 'HIDDEN' | 'OUT_OF_STOCK';
+}
+
+export interface ProductSpec {
+  key: string;
+  value: string;
+}
+
+export interface AreaBox {
+  x: number;      // % từ mép trái ảnh mockup (0-100)
+  y: number;      // % từ mép trên ảnh mockup (0-100)
+  width: number;  // % chiều rộng so với ảnh mockup (0-100)
+  height: number; // % chiều cao so với ảnh mockup (0-100)
+}
+
+export interface StudioBlank {
+  name: string;
+  colorHex: string;
+  frontBlankImage: string;
+  backBlankImage: string;
+}
+
+export interface CustomBlankConfig {
+  blanks?: StudioBlank[];
+  frontBlankImage?: string;
+  backBlankImage?: string;
+  supportedColors?: string[];
+  maxTextLength?: number;
+  backEngraveFee?: number;
+  photoPrintFee?: number;
+  printArea?: AreaBox;
+  safeArea?: AreaBox;
+}
+
+export interface StudioAsset {
+  _id: string;
+  name: string;
+  icon: string;
+  type: 'STICKER' | 'PATTERN' | 'CLIPART';
+  imageUrl?: string;
+  thumbnailUrl?: string;
+  sourceProvider?: string;
+  sourceId?: string;
+  sourceUrl?: string;
+  author?: string;
+  license?: string;
+  tags?: string[];
+  category?: string;
+  surcharge?: number;
+  isActive?: boolean;
+  order?: number;
+}
+
+export interface OpenClipartItem {
+  id: string;
+  name: string;
+  previewUrl: string;
+  sourceUrl: string;
+  imported?: boolean;
+}
+
+export interface OpenClipartSearch {
+  items: OpenClipartItem[];
+  query: string;
+  searchQuery: string;
+  total: number;
+  page: number;
+  hasNext: boolean;
+}
+
+export interface OpenClipartImportResult {
+  imported: number;
+  skipped: number;
+  failed: number;
+  results: Array<{ id: string; status: 'imported' | 'skipped' | 'failed'; message?: string }>;
+}
+
+export interface StudioGraphic {
+  id: string;
+  assetId?: string;
+  name: string;
+  icon: string;
+  type?: 'STICKER' | 'CLIPART';
+  imageUrl?: string;
+  face?: 'front' | 'back';
+  coordinateSpace?: 'safe-area';
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  scaleX?: number;
+  scaleY?: number;
+  rotation?: number;
+  zIndex?: number;
+}
+
+export interface StudioTextBlock {
+  id: string;
+  face: 'front' | 'back';
+  text: string;
+  fontFamily: string;
+  color: string;
+  engraveColor?: string; // Legacy saved designs
+  fontSize: number;
+  align: 'left' | 'center' | 'right';
+  bold: boolean;
+  italic: boolean;
+  letterSpacing: number;
+  lineHeight: number;
+  visible: boolean;
+  x: number;
+  y: number;
+  width: number;
+  scaleX: number;
+  scaleY: number;
+  rotation: number;
+  zIndex: number;
+}
+
+export interface Product {
+  loyaltyEligible?: boolean;
+  _id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  price: number;
+  salePrice?: number;
+  category?: any;
+  images: string[];
+  variants?: ProductVariant[];
+  specs?: ProductSpec[];
+  stock: number;
+  sku?: string;
+  tags?: string[];
+  isCustomizable?: boolean;
+  supportsCustomization?: boolean;
+  studioSupported?: boolean;
+  audience?: string[];
+  occasions?: string[];
+  isFlashSale?: boolean;
+  flashSaleDiscountPercent?: number;
+  rating?: number;
+  soldCount?: number;
+  customBaseFee?: number;
+  customConfig?: CustomBlankConfig;
+  status?: string;
+  relatedProducts?: Product[];
+  createdAt?: string;
+}
+
+export interface CustomDesign {
+  textBlocks?: StudioTextBlock[];
+  _id?: string;
+  productId?: string | Product;
+  baseProductId?: string;
+  title?: string;
+  designName?: string;
+  frontMessage?: string;
+  backMessage?: string;
+  customText?: string;
+  fontFamily?: string;
+  engraveColor?: string;
+  colorHex?: string;
+  selectedColor?: string;
+  pattern?: string;
+  uploadedImage?: string;
+  imageScale?: number;
+  stickers?: StudioGraphic[];
+  previewImage?: string;
+  frontPreviewImage?: string;
+  backPreviewImage?: string;
+  customFee?: number;
+  surcharges?: Record<string, number>;
+  isDraft?: boolean;
+  price?: number;
+  designData?: any;
+}
+
+export interface CartItem {
+  _id?: string;
+  variantSku?: string;
+  productId: any;
+  name?: string;
+  variantName?: string;
+  quantity: number;
+  image?: string;
+  customDesignId?: string;
+  customDetails?: {
+    textBlocks?: StudioTextBlock[];
+    frontMessage?: string;
+    backMessage?: string;
+    customText?: string;
+    fontFamily?: string;
+    engraveColor?: string;
+    colorHex?: string;
+    selectedColor?: string;
+    pattern?: string;
+    uploadedImage?: string;
+    imageScale?: number;
+    stickers?: StudioGraphic[];
+    previewImage?: string;
+    frontPreviewImage?: string;
+    backPreviewImage?: string;
+    customFee?: number;
+    surcharges?: Record<string, number>;
+    designData?: any;
+  };
+  price: number;
+  isCustom: boolean;
+  depositRequired: number;
+}
+
+export interface Cart {
+  shippingMethod?: 'STANDARD' | 'EXPRESS';
+  vouchers?: VoucherOffer[];
+  appliedVoucher?: VoucherOffer | null;
+  voucherNotice?: string;
+  _id: string;
+  items: CartItem[];
+  paymentMode: 'DEPOSIT_50' | 'FULL_PAYMENT';
+  voucherCode?: string;
+  voucherDiscount: number;
+  includeGiftWrap: boolean;
+  pricing: {
+    itemsTotal: number;
+    voucherDiscount: number;
+    shippingDiscount?: number;
+    baseShippingFee?: number;
+    shippingFee: number;
+    giftWrapFee: number;
+    totalAmount: number;
+    depositAmount: number;
+    remainingCodAmount: number;
+    totalCustomItems: number;
+  };
+}
+
+export interface OrderTimeline {
+  title: string;
+  description: string;
+  timestamp: string | Date;
+  completed: boolean;
+}
+
+export interface OrderItemDetail {
+  _id?: string;
+  productId: string;
+  name?: string;
+  productName?: string;
+  image?: string;
+  productImage?: string;
+  variantName?: string;
+  quantity: number;
+  price: number;
+  unitPrice?: number;
+  isCustom: boolean;
+  itemType?: 'READY_MADE' | 'CUSTOM';
+  status?: 'PENDING' | 'PREPARED' | 'IN_PRODUCTION' | 'QC_PENDING' | 'QC_PASSED' | 'QC_FAILED';
+  customDetails?: any;
+  depositRequired: number;
+  qcNote?: string;
+  qcHistory?: Array<{
+    result: string;
+    note?: string;
+    timestamp: string | Date;
+    inspector?: string;
+  }>;
+  preparedAt?: string | Date;
+  preparedBy?: string;
+}
+
+export interface GreetingCardTemplate {
+  id: string;
+  name: string;
+}
+
+export interface GreetingCard {
+  templateId: string;
+  templateName: string;
+  heading: string;
+  message: string;
+}
+
+export interface Order {
+  greetingCard?: GreetingCard | null;
+  _id: string;
+  orderCode: string;
+  customerInfo?: {
+    name: string;
+    phone: string;
+    email?: string;
+    address: string;
+    provinceCode?: string;
+    provinceName?: string;
+    wardCode?: string;
+    wardName?: string;
+    street?: string;
+    note?: string;
+  };
+  shippingAddress?: {
+    fullName: string;
+    phone: string;
+    city: string;
+    district: string;
+    ward: string;
+    detailAddress: string;
+  };
+  shippingNote?: string;
+  items: OrderItemDetail[];
+  pricing?: {
+    itemsTotal: number;
+    voucherDiscount: number;
+    shippingDiscount?: number;
+    baseShippingFee?: number;
+    shippingFee: number;
+    giftWrapFee: number;
+    totalAmount: number;
+    depositAmount: number;
+    remainingCodAmount: number;
+  };
+  totalAmount: number;
+  depositAmount?: number;
+  remainingAmount?: number;
+  paymentMode: 'DEPOSIT_50' | 'FULL_PAYMENT';
+  paymentMethod: 'VIETQR' | 'VNPAY' | 'MOMO' | 'COD';
+  paymentStatus: 'UNPAID' | 'PARTIALLY_PAID_DEPOSIT_50' | 'PAID_FULL' | 'REFUNDED';
+  orderStatus: 'AWAITING_CONFIRMATION' | 'PENDING' | 'CONFIRMED' | 'PROCESSING' | 'IN_TRANSIT' | 'SHIPPING' | 'DELIVERED' | 'RETURNED_BP06' | 'CANCELLED';
+  fulfillmentStatus: 'AWAITING_DEPOSIT' | 'AWAITING_CONFIRMATION' | 'CONFIRMED' | 'AT_WORKSHOP' | 'QUALITY_INSPECTION' | 'PACKAGED' | 'SHIPPED' | 'DELIVERED' | 'RETURNING' | 'RETURNED_RECEIVED' | 'TRANSFERRED_BP06';
+  timeline?: OrderTimeline[];
+  trackingCode?: string;
+  shippingCarrier?: string;
+  confirmationWait?: {
+    minWaitHours: number;
+    maxWaitHours: number;
+    eligibleAt: string | Date;
+    deadlineAt: string | Date;
+    confirmedAt?: string | Date;
+    confirmedBy?: string;
+  };
+  isPackaged?: boolean;
+  packagedAt?: string | Date;
+  packagedBy?: string;
+  deliveryInfo?: {
+    carrier: string;
+    trackingCode: string;
+    dispatchedAt?: string | Date;
+    deliveryAttempts?: Array<{
+      attemptNumber: number;
+      timestamp: string | Date;
+      success: boolean;
+      failureReason?: string;
+      allowRetry?: boolean;
+      note?: string;
+    }>;
+    deliveryResult?: string;
+    failureReason?: string;
+    allowRetry?: boolean;
+    returnedAt?: string | Date;
+    receivedReturnAt?: string | Date;
+    transferredToBp06At?: string | Date;
+    bp06Note?: string;
+  };
+  createdAt: string;
+}
+
+export interface Voucher {
+  _id: string;
+  code: string;
+  title: string;
+  description: string;
+  discountType: 'FIXED' | 'PERCENT';
+  discountValue: number;
+  minOrderValue: number;
+  pointsCost: number;
+  requiredPoints?: number;
+  validUntil: string;
+  expiresAt?: string;
+}
