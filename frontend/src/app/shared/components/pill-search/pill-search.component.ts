@@ -22,9 +22,9 @@ import { ProductService } from '../../../core/services/product.service';
     .floating-search .search-icon, .floating-search .submit-label { display: none; }
     .floating-search .search-submit {
       width: 40px; height: 40px; padding: 0; border-radius: 50%;
-      color: #64748b; background: #f1f0f4; box-shadow: none;
+      color: #1A1A1A; background: #D4AF37; box-shadow: none;
     }
-    .floating-search .search-submit:hover { color: #800020; background: #F2E8DD; }
+    .floating-search .search-submit:hover { color: #1A1A1A; background: #C09A2B; }
     .floating-search .suggestions {
       top: auto; bottom: calc(100% + 12px); left: 0; right: 0; margin-top: 0;
       max-height: min(440px, 60dvh); overflow-y: auto;
@@ -32,7 +32,7 @@ import { ProductService } from '../../../core/services/product.service';
   `],
   template: `
     <div class="relative w-full px-4 sm:px-6" [class.floating-search]="floating">
-      <form role="search" (ngSubmit)="onSearch()" class="relative flex items-center gap-2 sm:gap-3 bg-white rounded-2xl sm:rounded-full shadow-[0_8px_32px_rgba(124,58,237,0.10)] border border-purple-200/80 hover:border-purple-300 focus-within:border-[#800020] focus-within:ring-4 focus-within:ring-purple-100 transition-all duration-200 p-1.5 pl-4 sm:pl-6">
+      <form role="search" (ngSubmit)="onSearch()" class="relative flex items-center gap-2 sm:gap-3 bg-white rounded-2xl sm:rounded-full shadow-[0_8px_32px_rgba(124,58,237,0.10)] border border-purple-200/80 hover:border-purple-300 focus-within:border-[#523F2B] focus-within:ring-4 focus-within:ring-purple-100 transition-all duration-200 p-1.5 pl-4 sm:pl-6">
         <span class="search-icon material-symbols-outlined text-purple-400 text-2xl shrink-0 select-none" aria-hidden="true">search</span>
         
         <input 
@@ -50,7 +50,7 @@ import { ProductService } from '../../../core/services/product.service';
         <!-- Loading indicator -->
         <div *ngIf="isLoading" class="w-5 h-5 shrink-0 border-2 border-purple-500 border-t-transparent rounded-full animate-spin mr-2"></div>
 
-        <button type="submit" aria-label="Tìm kiếm" title="Tìm kiếm" class="search-submit shrink-0 h-10 w-10 sm:h-11 sm:w-auto sm:px-6 rounded-xl sm:rounded-full bg-[#800020] hover:bg-[#66001A] text-white flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 shadow-sm border-none cursor-pointer">
+        <button type="submit" aria-label="Tìm kiếm" title="Tìm kiếm" class="search-submit shrink-0 h-10 w-10 sm:h-11 sm:w-auto sm:px-6 rounded-xl sm:rounded-full bg-[#D4AF37] hover:bg-[#C09A2B] text-[#1A1A1A] flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 shadow-sm border-none cursor-pointer">
           <span class="submit-label hidden sm:inline text-sm font-semibold">Tìm quà</span>
           <span class="material-symbols-outlined text-xl" aria-hidden="true">arrow_forward</span>
         </button>
@@ -64,7 +64,7 @@ import { ProductService } from '../../../core/services/product.service';
         <!-- Suggested Keywords Section -->
         <div *ngIf="suggestedKeywords.length > 0" class="p-3 border-b border-purple-50 bg-purple-50/40">
           <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5 px-2">
-            <span class="material-symbols-outlined text-xs text-[#800020]">trending_up</span>
+            <span class="material-symbols-outlined text-xs text-[#523F2B]">trending_up</span>
             Từ khóa gợi ý phổ biến
           </div>
           <div class="flex flex-wrap gap-1.5 px-1">
@@ -72,7 +72,7 @@ import { ProductService } from '../../../core/services/product.service';
               *ngFor="let kw of suggestedKeywords"
               type="button"
               (click)="selectKeyword(kw)"
-              class="px-3 py-1.5 rounded-full text-xs font-medium bg-white text-slate-700 hover:bg-purple-100 hover:text-[#800020] border border-purple-100/80 transition-all flex items-center gap-1 cursor-pointer"
+              class="px-3 py-1.5 rounded-full text-xs font-medium bg-white text-slate-700 hover:bg-purple-100 hover:text-[#523F2B] border border-purple-100/80 transition-all flex items-center gap-1 cursor-pointer"
             >
               <span class="material-symbols-outlined text-xs text-purple-400">search</span>
               {{ kw }}
@@ -83,7 +83,7 @@ import { ProductService } from '../../../core/services/product.service';
         <!-- Matching Products Section -->
         <div *ngIf="suggestedProducts.length > 0" class="p-3">
           <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5 px-2">
-            <span class="material-symbols-outlined text-xs text-[#800020]">auto_awesome</span>
+            <span class="material-symbols-outlined text-xs text-[#523F2B]">auto_awesome</span>
             Sản phẩm gợi ý liên quan
           </div>
           <div class="space-y-1">
@@ -98,11 +98,11 @@ import { ProductService } from '../../../core/services/product.service';
                 class="w-12 h-12 rounded-lg object-cover border border-purple-100 flex-shrink-0 group-hover:scale-105 transition-transform"
               />
               <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-slate-800 truncate group-hover:text-[#800020] transition-colors">
+                <div class="text-sm font-semibold text-slate-800 truncate group-hover:text-[#523F2B] transition-colors">
                   {{ prod.name }}
                 </div>
                 <div class="flex items-center gap-2 mt-0.5">
-                  <span class="text-xs font-bold text-[#800020]">
+                  <span class="text-xs font-bold text-[#523F2B]">
                     {{ (prod.salePrice || prod.price) | number:'1.0-0' }}đ
                   </span>
                   <span *ngIf="prod.salePrice" class="text-[10px] text-slate-400 line-through">
@@ -116,7 +116,7 @@ import { ProductService } from '../../../core/services/product.service';
                   </span>
                 </div>
               </div>
-              <span class="material-symbols-outlined text-slate-300 group-hover:text-[#800020] text-sm flex-shrink-0">
+              <span class="material-symbols-outlined text-slate-300 group-hover:text-[#523F2B] text-sm flex-shrink-0">
                 arrow_forward_ios
               </span>
             </div>
@@ -128,7 +128,7 @@ import { ProductService } from '../../../core/services/product.service';
           <button 
             type="button" 
             (click)="onSearch()"
-            class="text-xs font-semibold text-[#800020] hover:text-[#66001A] hover:underline flex items-center justify-center gap-1 mx-auto"
+            class="text-xs font-semibold text-[#523F2B] hover:text-[#3E2F20] hover:underline flex items-center justify-center gap-1 mx-auto"
           >
             Xem tất cả kết quả cho "{{ searchTerm }}"
             <span class="material-symbols-outlined text-xs">arrow_forward</span>

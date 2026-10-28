@@ -13,29 +13,29 @@ module.exports = {
         display: ['"Be Vietnam Pro"', 'sans-serif']
       },
       colors: {
-        purple: { 50: '#FAF1ED', 100: '#F2E3DC', 200: '#E5C9BE', 300: '#CFA599', 400: '#B78076', 500: '#985C60', 600: '#800020', 700: '#70001C', 800: '#66001A', 900: '#391720', 950: '#2B111A' },
+        purple: { 50: '#F8F4EB', 100: '#F1EBE2', 200: '#E4D8C3', 300: '#D2BE96', 400: '#B79C68', 500: '#8A6D39', 600: '#523F2B', 700: '#463522', 800: '#3E2F20', 900: '#2B2B2B', 950: '#1A1A1A' },
         brand: {
-          50: '#FAF1ED',
-          100: '#F2E8DD',
-          200: '#DCCAB1',
-          300: '#CFA599',
-          400: '#B78076',
-          500: '#985C60',
-          600: '#800020',
-          700: '#66001A',
-          800: '#66001A',
-          900: '#391720',
-          purple: '#800020'
+          50: '#F8F4EB',
+          100: '#F1EBE2',
+          200: '#DDD3C5',
+          300: '#D2BE96',
+          400: '#B79C68',
+          500: '#8A6D39',
+          600: '#523F2B',
+          700: '#3E2F20',
+          800: '#3E2F20',
+          900: '#2B2B2B',
+          purple: '#523F2B'
         },
         surface: {
-          page: '#FFF5E1',
+          page: '#FDFBF7',
           card: '#FFFFFF',
-          ink: '#3D2926',
-          muted: '#75635A',
+          ink: '#1A1A1A',
+          muted: '#6B6258',
           slate: '#6B7280',
-          border: '#DCCAB1',
-          light: '#FFF5E1',
-          container: '#F2E8DD'
+          border: '#DDD3C5',
+          light: '#FDFBF7',
+          container: '#F1EBE2'
         },
         jade: {
           DEFAULT: '#10B981',
@@ -45,9 +45,9 @@ module.exports = {
         },
         giftory: {
           primary: {
-            DEFAULT: '#800020',
-            dark: '#66001A',
-            light: '#DCCAB1'
+            DEFAULT: '#523F2B',
+            dark: '#3E2F20',
+            light: '#DDD3C5'
           },
           sale: {
             DEFAULT: '#E11D48',
@@ -55,10 +55,10 @@ module.exports = {
           },
           amber: '#F59E0B',
           emerald: '#10B981',
-          ink: '#3D2926',
-          canvas: '#FFF5E1',
-          surface: '#FFF5E1',
-          border: '#DCCAB1'
+          ink: '#1A1A1A',
+          canvas: '#FDFBF7',
+          surface: '#FDFBF7',
+          border: '#DDD3C5'
         }
       },
       boxShadow: {

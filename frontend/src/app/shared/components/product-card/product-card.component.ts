@@ -15,7 +15,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
     class: 'flex flex-col h-full w-full'
   },
   template: `
-    <article class="product-card w-full h-full bg-white rounded-2xl p-4 sm:p-5 shadow-shop-card border border-[#DCCAB1]/60 hover:shadow-floating hover:border-purple-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+    <article class="product-card w-full h-full bg-white rounded-2xl p-4 sm:p-5 shadow-shop-card border border-[#DDD3C5]/60 hover:shadow-floating hover:border-purple-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
       <!-- Top Image with Floating Badges -->
       <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-slate-50 mb-3.5 flex items-center justify-center shrink-0">
         <img 
@@ -61,7 +61,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
             [routerLink]="['/custom-studio']"
             [queryParams]="{ productId: product._id }"
             (click)="$event.stopPropagation()"
-            class="absolute bottom-2 left-2 right-2 py-1.5 px-2 rounded-xl bg-white/95 hover:bg-white text-[#800020] hover:text-[#66001A] font-bold text-[11px] text-center shadow-md border border-purple-100 flex items-center justify-center gap-1 transition-all active:scale-95 z-10 cursor-pointer"
+            class="absolute bottom-2 left-2 right-2 py-1.5 px-2 rounded-xl bg-white/95 hover:bg-white text-[#523F2B] hover:text-[#3E2F20] font-bold text-[11px] text-center shadow-md border border-purple-100 flex items-center justify-center gap-1 transition-all active:scale-95 z-10 cursor-pointer"
             title="Mở Custom Studio mô phỏng 3D"
           >
             <span class="material-symbols-outlined text-[14px]">view_in_ar</span>
@@ -75,7 +75,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
         <div>
           <!-- Category & Rating Row: Fixed height 20px -->
           <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5 h-5 shrink-0">
-            <span class="truncate font-normal text-[#75635A] max-w-[62%]">{{ getCategoryName() }}</span>
+            <span class="truncate font-normal text-[#6B6258] max-w-[62%]">{{ getCategoryName() }}</span>
             <div class="flex items-center gap-1 text-amber-500 font-semibold shrink-0 text-xs">
               <span class="material-symbols-outlined text-[14px]">star</span>
               <span>{{ product.rating || 4.9 }}</span>
@@ -86,7 +86,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
           <!-- Title: Standardized fixed 2-line height so 1-line and 2-line titles align perfectly -->
           <div class="min-h-[3.1rem] mb-1 flex items-start">
             <a [routerLink]="['/products', product.slug]" 
-               class="product-detail-link font-bold text-[15px] sm:text-base text-[#3D2926] hover:text-[#800020] transition-colors leading-[1.55]"
+               class="product-detail-link font-bold text-[15px] sm:text-base text-[#1A1A1A] hover:text-[#523F2B] transition-colors leading-[1.55]"
                [title]="product.name">
               <span class="line-clamp-2">{{ product.name }}</span>
             </a>
@@ -97,7 +97,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
         <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
           <div class="min-w-0 flex-1">
             <div class="flex items-baseline gap-1.5 flex-wrap">
-              <span class="text-base sm:text-lg font-bold text-[#800020] leading-none">
+              <span class="text-base sm:text-lg font-bold text-[#523F2B] leading-none">
                 {{ (product.salePrice && product.salePrice > 0 ? product.salePrice : product.price) | number:'1.0-0' }}đ
               </span>
               @if (product.salePrice && product.salePrice > 0 && product.salePrice < product.price) {
@@ -114,7 +114,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
                   Cọc 50% chỉ từ {{ ((product.salePrice || product.price) * 0.5) | number:'1.0-0' }}đ
                 </span>
               } @else {
-                <span class="text-[11px] text-[#75635A] font-normal flex items-center gap-0.5 truncate">
+                <span class="text-[11px] text-[#6B6258] font-normal flex items-center gap-0.5 truncate">
                   <span class="material-symbols-outlined text-[12px] text-emerald-500">verified</span>
                   Chính hãng • Giao nhanh
                 </span>
@@ -128,7 +128,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
               <a 
                 [routerLink]="['/custom-studio']"
                 [queryParams]="{ productId: product._id }"
-                class="h-11 px-3 rounded-xl bg-[#F2E8DD] hover:bg-[#DCCAB1] text-[#800020] font-semibold text-xs flex items-center gap-1 transition-all active:scale-95 shadow-sm"
+                class="h-11 px-3 rounded-xl bg-[#F1EBE2] hover:bg-[#DDD3C5] text-[#523F2B] font-semibold text-xs flex items-center gap-1 transition-all active:scale-95 shadow-sm"
                 title="Mở Studio chế tác cá nhân"
               >
                 <span class="material-symbols-outlined text-[15px]">draw</span>
@@ -137,7 +137,7 @@ import { calculateDiscountPercent } from '../../../core/utils/product-price.util
             } @else {
               <button 
                 (click)="quickAddToCart($event)"
-                class="w-11 h-11 rounded-xl bg-[#F2E8DD] hover:bg-[#800020] text-[#800020] hover:text-white flex items-center justify-center transition-all active:scale-95 shadow-sm"
+                class="w-11 h-11 rounded-xl bg-[#F1EBE2] hover:bg-[#C09A2B] text-[#523F2B] hover:text-[#1A1A1A] flex items-center justify-center transition-all active:scale-95 shadow-sm"
                 title="Thêm nhanh vào giỏ"
               >
                 <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>

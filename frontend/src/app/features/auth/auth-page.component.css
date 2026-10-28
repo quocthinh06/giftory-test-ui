@@ -53,7 +53,7 @@
 }
 
 .giftory-input:focus {
-  border-color: #800020 !important;
+  border-color: #523F2B !important;
   background-color: #ffffff !important;
   box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12), 0 2px 8px rgba(124, 58, 237, 0.06) !important;
   outline: none;

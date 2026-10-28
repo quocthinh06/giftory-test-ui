@@ -26,8 +26,8 @@ import { Product, Category } from '../../core/models';
         
         <!-- 1 DÒNG DUY NHẤT CHẠY NGANG, KHÔNG VIỀN TRẮNG, NHẤP NHÔ LƯỢN SÓNG LỆCH NHỊP -->
         <div class="home-image-stream relative w-full max-w-5xl mb-6 select-none overflow-hidden py-2">
-          <div class="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-[#FFF5E1] to-transparent z-20 pointer-events-none"></div>
-          <div class="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-[#FFF5E1] to-transparent z-20 pointer-events-none"></div>
+          <div class="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-[#FDFBF7] to-transparent z-20 pointer-events-none"></div>
+          <div class="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-[#FDFBF7] to-transparent z-20 pointer-events-none"></div>
           
           <div class="overflow-hidden w-full py-1">
             <div class="animate-single-marquee flex items-center gap-4">
@@ -101,8 +101,8 @@ import { Product, Category } from '../../core/models';
         <!-- Quick Category Pills -->
         <div class="home-categories relative z-10 flex items-center justify-center gap-2.5 mt-6 flex-wrap max-w-5xl px-2">
           @for (cat of categories(); track cat._id) {
-            <a [routerLink]="['/products']" [queryParams]="{ category: cat.slug }" class="group relative hover:z-20 focus-visible:z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#DCCAB1] shadow-sm hover:bg-[#DCCAB1] hover:text-[#800020] transition-all text-xs font-semibold text-[#3D2926]">
-              <span class="w-5 h-5 shrink-0 rounded-full bg-[#F2E8DD] text-[#800020] flex items-center justify-center text-[11px] overflow-hidden origin-center transition-transform duration-200 ease-out group-hover:scale-150 group-focus-visible:scale-150 motion-reduce:transition-none">
+            <a [routerLink]="['/products']" [queryParams]="{ category: cat.slug }" class="group relative hover:z-20 focus-visible:z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#DDD3C5] shadow-sm hover:bg-[#DDD3C5] hover:text-[#523F2B] transition-all text-xs font-semibold text-[#1A1A1A]">
+              <span class="w-5 h-5 shrink-0 rounded-full bg-[#F1EBE2] text-[#523F2B] flex items-center justify-center text-[11px] overflow-hidden origin-center transition-transform duration-200 ease-out group-hover:scale-150 group-focus-visible:scale-150 motion-reduce:transition-none">
                 @if (cat.emoji && (cat.emoji.startsWith('http') || cat.emoji.startsWith('/') || cat.emoji.startsWith('data:') || cat.emoji.length > 10)) {
                   <img [src]="cat.emoji" [alt]="cat.name" class="w-full h-full object-contain" />
                 } @else {
@@ -152,18 +152,18 @@ import { Product, Category } from '../../core/models';
 
       <!-- BEGIN: Custom Studio Bespoke Showcase -->
       <section class="home-section home-bespoke">
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-shop-card border border-[#DCCAB1]">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-shop-card border border-[#DDD3C5]">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 border-b border-slate-100 pb-4">
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs">Thiết Kế Độc Bản</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-[#3D2926]">Quà Tặng Cá Nhân Hóa • Chế Tác Riêng (Bespoke 1:1)</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-[#1A1A1A]">Quà Tặng Cá Nhân Hóa • Chế Tác Riêng (Bespoke 1:1)</h2>
               </div>
               <p class="text-slate-500 text-xs sm:text-sm mt-1">
                 Tự tay khắc tên, thông điệp, chọn màu ánh kim và xem trước mô phỏng 3D thời gian thực. Áp dụng chính sách cọc 50% linh hoạt.
               </p>
             </div>
-            <a routerLink="/custom-studio" class="px-5 py-2.5 rounded-xl bg-[#800020] hover:bg-[#66001A] text-white font-semibold text-xs flex items-center gap-1.5 self-start sm:self-auto shadow-md shadow-purple-300 transition-all">
+            <a routerLink="/custom-studio" class="px-5 py-2.5 rounded-xl bg-[#D4AF37] hover:bg-[#C09A2B] text-[#1A1A1A] font-semibold text-xs flex items-center gap-1.5 self-start sm:self-auto shadow-md shadow-purple-300 transition-all">
               <span class="material-symbols-outlined text-[16px]">palette</span>
               <span>Khám Phá Studio</span>
             </a>
@@ -182,10 +182,10 @@ import { Product, Category } from '../../core/models';
       <section class="home-section home-recommendations">
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h2 class="text-xl sm:text-2xl font-bold text-[#3D2926]">Gợi Ý Quà Tặng Tinh Tuyển</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#1A1A1A]">Gợi Ý Quà Tặng Tinh Tuyển</h2>
             <p class="text-slate-500 text-xs mt-0.5">Những món quà được yêu thích nhất tháng này</p>
           </div>
-          <a routerLink="/products" class="text-xs font-semibold text-[#800020] hover:underline flex items-center gap-1">
+          <a routerLink="/products" class="text-xs font-semibold text-[#523F2B] hover:underline flex items-center gap-1">
             <span>Xem tất cả sản phẩm</span>
             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
           </a>
@@ -201,42 +201,42 @@ import { Product, Category } from '../../core/models';
       <!-- BEGIN: Assurance Badges Grid (Pillow-soft tactile from Stitch) -->
       <section class="home-section home-assurances">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DCCAB1]/60 flex items-start gap-4 hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#800020] flex items-center justify-center shrink-0">
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DDD3C5]/60 flex items-start gap-4 hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#523F2B] flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[24px]">verified</span>
             </div>
             <div>
-              <h4 class="font-bold text-sm text-[#3D2926]">Đổi trả 100% Yên Tâm</h4>
+              <h4 class="font-bold text-sm text-[#1A1A1A]">Đổi trả 100% Yên Tâm</h4>
               <p class="text-xs text-slate-500 mt-1 leading-relaxed">Hoàn tiền hoặc làm lại tức thì nếu sai lệch bất kỳ chi tiết so với bản xem trước.</p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DCCAB1]/60 flex items-start gap-4 hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#800020] flex items-center justify-center shrink-0">
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DDD3C5]/60 flex items-start gap-4 hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#523F2B] flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[24px]">rocket_launch</span>
             </div>
             <div>
-              <h4 class="font-bold text-sm text-[#3D2926]">Giao Hỏa Tốc 2 Giờ</h4>
+              <h4 class="font-bold text-sm text-[#1A1A1A]">Giao Hỏa Tốc 2 Giờ</h4>
               <p class="text-xs text-slate-500 mt-1 leading-relaxed">Đội ngũ shipper riêng biệt, giao hẹn giờ chu đáo tận tay người nhận tại HCM & HN.</p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DCCAB1]/60 flex items-start gap-4 hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#800020] flex items-center justify-center shrink-0">
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DDD3C5]/60 flex items-start gap-4 hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#523F2B] flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[24px]">security</span>
             </div>
             <div>
-              <h4 class="font-bold text-sm text-[#3D2926]">Bảo Mật Chuẩn PCI-DSS</h4>
+              <h4 class="font-bold text-sm text-[#1A1A1A]">Bảo Mật Chuẩn PCI-DSS</h4>
               <p class="text-xs text-slate-500 mt-1 leading-relaxed">Thanh toán cọc đa kênh: VNPAY, MoMo, VietQR, Visa/Mastercard mã hóa cấp cao.</p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DCCAB1]/60 flex items-start gap-4 hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#800020] flex items-center justify-center shrink-0">
+          <div class="bg-white rounded-2xl p-5 shadow-sm border border-[#DDD3C5]/60 flex items-start gap-4 hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-[#523F2B] flex items-center justify-center shrink-0">
               <span class="material-symbols-outlined text-[24px]">forum</span>
             </div>
             <div>
-              <h4 class="font-bold text-sm text-[#3D2926]">Hỗ Trợ Quà Tặng 24/7</h4>
+              <h4 class="font-bold text-sm text-[#1A1A1A]">Hỗ Trợ Quà Tặng 24/7</h4>
               <p class="text-xs text-slate-500 mt-1 leading-relaxed">Chuyên viên tư vấn thông điệp, thiệp in lời chúc & thiết kế luôn sẵn sàng phục vụ.</p>
             </div>
           </div>

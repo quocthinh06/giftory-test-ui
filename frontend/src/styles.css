@@ -32,12 +32,12 @@
 
 :root {
   --font-ui: 'Be Vietnam Pro', sans-serif;
-  --bg-page: #FFF5E1;
-  --apple-ink: #3D2926;
-  --regal-purple: #800020;
-  --purple-hover: #66001A;
-  --purple-light: #DCCAB1;
-  --border-subtle: #DCCAB1;
+  --bg-page: #FDFBF7;
+  --apple-ink: #1A1A1A;
+  --regal-purple: #523F2B;
+  --purple-hover: #3E2F20;
+  --purple-light: #DDD3C5;
+  --border-subtle: #DDD3C5;
   --pure-white: #ffffff;
   --success-jade: #10B981;
 }
@@ -47,8 +47,8 @@ html, body {
 }
 
 body {
-  background-color: #FFF5E1;
-  color: #3D2926;
+  background-color: #FDFBF7;
+  color: #1A1A1A;
   font-family: var(--font-ui);
   font-size: 1rem;
   line-height: 1.65;
@@ -67,7 +67,7 @@ body {
 }
 .product-detail-link:focus-visible { outline: none; }
 .product-detail-link:focus-visible::after {
-  outline: 2px solid #800020;
+  outline: 2px solid #523F2B;
   outline-offset: -3px;
 }
 
@@ -84,13 +84,13 @@ app-custom-studio {
 
 /* Global High-Contrast Text Highlight Selection */
 *::selection {
-  background-color: #DCCAB1 !important;
-  color: #3D2926 !important;
+  background-color: #DDD3C5 !important;
+  color: #1A1A1A !important;
 }
 
 *::-moz-selection {
-  background-color: #DCCAB1 !important;
-  color: #3D2926 !important;
+  background-color: #DDD3C5 !important;
+  color: #1A1A1A !important;
 }
 
 /* Material Symbols Outlined Icon variations */
@@ -133,11 +133,11 @@ app-custom-studio {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #DCCAB1;
+  background: #DDD3C5;
   border-radius: 9999px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #800020;
+  background: #523F2B;
 }
 
 /* Single Row Infinite Wave Marquee */
@@ -209,13 +209,16 @@ app-custom-studio {
 /* Storefront-only roles; Giftory values, not measured Goody tokens.
    Admin/auth shells and document/canvas typography stay independent. */
 .storefront-theme {
-  --storefront-page: #FFF5E1;
+  --storefront-page: #FDFBF7;
   --storefront-surface: #FFFFFF;
-  --storefront-ink: #3D2926;
-  --storefront-muted: #75635A;
-  --storefront-action: #800020;
-  --storefront-action-hover: #66001A;
-  --storefront-border: #DCCAB1;
+  --storefront-ink: #1A1A1A;
+  --storefront-muted: #6B6258;
+  --storefront-action: #D4AF37;
+  --storefront-link: #523F2B;
+  --storefront-dark: #2B2B2B;
+  --storefront-action-ink: #1A1A1A;
+  --storefront-action-hover: #C09A2B;
+  --storefront-border: #DDD3C5;
   --storefront-font: var(--font-ui);
   --storefront-container: 80rem;
   --storefront-section-gap: clamp(3rem, 6vw, 5.5rem);
@@ -230,18 +233,18 @@ app-custom-studio {
   font: 700 0.9375rem/1.5 var(--storefront-font); text-align: center;
   transition: background-color 150ms ease-out, color 150ms ease-out;
 }
-.storefront-button-primary { background: var(--storefront-action); color: white; }
+.storefront-button-primary { background: var(--storefront-action); color: var(--storefront-action-ink); }
 .storefront-button-primary:hover { background: var(--storefront-action-hover); }
-.storefront-button-secondary { background: var(--storefront-surface); color: var(--storefront-action); }
-.storefront-button-secondary:hover { background: #F2E8DD; }
-.storefront-button:focus-visible { outline: 2px solid var(--storefront-action); outline-offset: 4px; }
+.storefront-button-secondary { background: var(--storefront-surface); color: var(--storefront-link); }
+.storefront-button-secondary:hover { background: #F1EBE2; }
+.storefront-button:focus-visible { outline: 2px solid var(--storefront-link); outline-offset: 4px; }
 .storefront-button:active { border-color: var(--storefront-action-hover); }
 .storefront-button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* Friendly luxury: storefront chrome only, never printed or canvas artwork. */
 .storefront-theme {
-  --storefront-gold: #A18450;
-  --storefront-wood: #8B6B52;
+  --storefront-gold: #D4AF37;
+  --storefront-wood: #523F2B;
   --storefront-heading-font: var(--font-ui);
 }
 .storefront-theme :is(h1, h2, h3) { font-family: var(--storefront-heading-font); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; }
@@ -249,7 +252,7 @@ app-custom-studio {
   border-radius: 10px; caret-color: var(--storefront-action);
 }
 .storefront-theme :is(input, select, textarea):focus-visible {
-  outline: 2px solid var(--storefront-action); outline-offset: 2px;
+  outline: 2px solid var(--storefront-link); outline-offset: 2px;
 }
 .storefront-theme button { transition-duration: 200ms; }
 .storefront-theme app-product-card article {
@@ -261,13 +264,13 @@ app-custom-studio {
   box-shadow: 0 12px 28px -12px rgba(61, 41, 38, 0.18);
 }
 .storefront-theme app-product-card article > div:first-child { border-radius: 10px; }
-.storefront-theme app-product-card article > div:first-child > img { object-fit: contain; background: #FFF5E1; }
-.storefront-theme app-sidebar-rail aside { background: #FFF5E1; backdrop-filter: none; }
+.storefront-theme app-product-card article > div:first-child > img { object-fit: contain; background: #FDFBF7; }
+.storefront-theme app-sidebar-rail aside { background: #FDFBF7; backdrop-filter: none; }
 .storefront-theme app-sidebar-rail .rail-link { border-radius: 10px; }
-.storefront-theme app-sidebar-rail .rail-link.active { box-shadow: inset 0 0 0 1px #A18450; }
+.storefront-theme app-sidebar-rail .rail-link.active { box-shadow: inset 0 0 0 1px #D4AF37; }
 .storefront-theme app-pill-search form { box-shadow: none; border-radius: 12px; border-color: var(--storefront-border); }
 .storefront-theme app-pill-search .search-submit { border-radius: 10px; }
-.storefront-theme app-pill-search input::placeholder { color: #75635A; opacity: 1; }
+.storefront-theme app-pill-search input::placeholder { color: #6B6258; opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .storefront-theme *, .storefront-theme *::before, .storefront-theme *::after {
     animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
@@ -276,11 +279,11 @@ app-custom-studio {
 }
 
 /* Preserve the original logo silhouette in the exact brand color. */
-img[src="/logo.png"] { filter: url(#giftory-logo-burgundy); }
+img[src="/logo.png"] { filter: url(#giftory-logo-walnut); }
 
 /* One UI family; icon glyphs and customer-selected Studio artwork keep their fonts. */
 button, input, select, textarea { font-family: inherit; }
-.storefront-theme { accent-color: var(--storefront-action); }
+.storefront-theme { accent-color: var(--storefront-link); }
 .storefront-theme :is(h1, h2, h3, h4) { overflow-wrap: break-word; }
 .storefront-theme app-product-card article { box-shadow: 0 4px 16px -10px rgb(61 41 38 / 16%); }
 .storefront-theme app-product-card article:hover { box-shadow: 0 10px 24px -12px rgb(61 41 38 / 22%); }

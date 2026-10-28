@@ -13,7 +13,7 @@ import { DialogFocusDirective } from '../../../shared/components/dialog-focus.di
   template: `
     <section class="bg-white rounded-3xl border border-giftory-border p-4 sm:p-6 space-y-5" aria-labelledby="clipart-import-title">
       <div>
-        <h2 id="clipart-import-title" class="text-lg font-bold text-[#3D2926]">Nhập clipart từ OpenClipart</h2>
+        <h2 id="clipart-import-title" class="text-lg font-bold text-[#1A1A1A]">Nhập clipart từ OpenClipart</h2>
         <p class="text-xs text-slate-500 mt-1">Tìm hình, xem preview và tick chọn để thêm vào thư viện Đồ họa của Design Studio.</p>
         <a href="https://openclipart.org/share" target="_blank" rel="noopener noreferrer" class="text-[11px] text-purple-600 underline">Nguồn OpenClipart · CC0</a>
       </div>

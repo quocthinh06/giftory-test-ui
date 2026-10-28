@@ -11,15 +11,15 @@ import { CartService } from '../../../core/services/cart.service';
   imports: [CommonModule, RouterModule],
   styles: [`
     .rail-link { display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:100%;min-height:54px;border-radius:14px;color:#64748b;position:relative;transition:background .15s,color .15s }
-    .rail-link:hover { background:#FFF5E1;color:#800020 }
-    .rail-link.active { background:#800020;color:white }
-    .rail-link:focus-visible,.account-link:focus-visible,button:focus-visible { outline:2px solid #800020;outline-offset:3px }
+    .rail-link:hover { background:#FDFBF7;color:#523F2B }
+    .rail-link.active { background:#D4AF37;color:#1A1A1A }
+    .rail-link:focus-visible,.account-link:focus-visible,button:focus-visible { outline:2px solid #523F2B;outline-offset:3px }
     .account-link { display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:13px;color:#334155;width:100%;text-align:left }
-    .account-link:hover,.account-link.active { background:#FFF5E1;color:#800020 }
+    .account-link:hover,.account-link.active { background:#FDFBF7;color:#523F2B }
     .account-link .material-symbols-outlined { font-size:20px }
   `],
   template: `
-    <aside class="fixed left-0 inset-y-0 h-dvh w-16 md:w-20 bg-white/95 backdrop-blur-md border-r border-[#DCCAB1] z-50 flex flex-col items-center py-3 shadow-sm">
+    <aside class="fixed left-0 inset-y-0 h-dvh w-16 md:w-20 bg-white/95 backdrop-blur-md border-r border-[#DDD3C5] z-50 flex flex-col items-center py-3 shadow-sm">
       <a routerLink="/" class="shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center hover:bg-purple-50 focus-visible:outline-purple-600" title="Trang chủ Giftory" aria-label="Trang chủ Giftory">
         <img src="/logo.png" alt="Giftory" class="w-10 h-10 object-contain" />
       </a>

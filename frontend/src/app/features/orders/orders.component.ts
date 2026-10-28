@@ -53,7 +53,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
       @if (error()) { <div role="alert" class="bg-rose-50 border border-rose-100 rounded-2xl p-5 text-sm text-rose-700">{{ error() }} @if (authService.isAuthenticated()) { <button type="button" (click)="loadPage()" class="ml-3 underline font-semibold">Thử lại</button> }</div> }
       @if (!authService.isAuthenticated() && !activeOrder()) {
       <!-- Search Card Pill Box -->
-      <div class="bg-white rounded-3xl p-5 lg:p-6 border border-[#DCCAB1] shadow-sm space-y-3">
+      <div class="bg-white rounded-3xl p-5 lg:p-6 border border-[#DDD3C5] shadow-sm space-y-3">
         <div class="flex flex-col md:flex-row items-center gap-3">
           <!-- Sub-label -->
           <div class="hidden xl:block shrink-0 pr-2 border-r border-slate-100 text-left">
@@ -70,7 +70,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
               (keyup.enter)="lookupOrder()"
               aria-label="Mã đơn hàng"
               placeholder="VD: GF-104001, GF-894212..."
-              class="w-full pl-8 pr-4 py-2.5 bg-[#FFF5E1]/50 rounded-2xl border border-transparent focus:border-[#800020] focus:bg-white text-sm font-mono font-bold text-slate-800 focus:outline-none transition"
+              class="w-full pl-8 pr-4 py-2.5 bg-[#FDFBF7]/50 rounded-2xl border border-transparent focus:border-[#523F2B] focus:bg-white text-sm font-mono font-bold text-slate-800 focus:outline-none transition"
             />
           </div>
 
@@ -85,7 +85,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
               inputmode="tel"
               autocomplete="tel"
               placeholder="0987 654 321"
-              class="w-full pl-9 pr-4 py-2.5 bg-[#FFF5E1]/50 rounded-2xl border border-transparent focus:border-[#800020] focus:bg-white text-sm font-mono font-semibold text-slate-800 focus:outline-none transition"
+              class="w-full pl-9 pr-4 py-2.5 bg-[#FDFBF7]/50 rounded-2xl border border-transparent focus:border-[#523F2B] focus:bg-white text-sm font-mono font-semibold text-slate-800 focus:outline-none transition"
             />
           </div>
 
@@ -93,7 +93,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
           <button
             (click)="lookupOrder()"
             [disabled]="loading()"
-            class="w-full md:w-auto px-6 py-2.5 bg-[#800020] hover:bg-[#66001A] text-white text-xs font-bold rounded-2xl shadow-md transition flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+            class="w-full md:w-auto px-6 py-2.5 bg-[#D4AF37] hover:bg-[#C09A2B] text-[#1A1A1A] text-xs font-bold rounded-2xl shadow-md transition flex items-center justify-center gap-2 shrink-0 cursor-pointer"
           >
             <span class="material-symbols-outlined text-base">search</span>
             Tra Cứu Lộ Trình
@@ -105,7 +105,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
             <span class="material-symbols-outlined text-xs text-emerald-500">verified_user</span>
             <span>Sử dụng đúng số điện thoại bạn đã cung cấp khi đặt hàng.</span>
           </div>
-          <button (click)="resetSearch()" class="text-[#800020] font-semibold hover:underline cursor-pointer">
+          <button (click)="resetSearch()" class="text-[#523F2B] font-semibold hover:underline cursor-pointer">
             Nhập mã đơn khác →
           </button>
         </div>
@@ -115,11 +115,11 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
       @if (activeOrder()) {
       <a routerLink="/care" class="inline-block text-sm font-semibold text-purple-700 hover:underline">Thông báo, đánh giá & hỗ trợ đơn hàng</a>
       <!-- MAIN STEPPER CARD: Tiến Độ BP-04 Live -->
-      <div class="bg-white rounded-3xl p-6 lg:p-8 border border-[#DCCAB1] shadow-sm space-y-6">
+      <div class="bg-white rounded-3xl p-6 lg:p-8 border border-[#DDD3C5] shadow-sm space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
           <div>
             <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
-              <span class="material-symbols-outlined text-[#800020] text-lg">precision_manufacturing</span>
+              <span class="material-symbols-outlined text-[#523F2B] text-lg">precision_manufacturing</span>
               Tiến Độ Thực Thi & Giao Vận (BP-04)
             </h2>
             <p class="text-xs text-slate-400 mt-0.5">Minh bạch từng công đoạn chuẩn bị quà, đóng gói và giao hàng</p>
@@ -136,7 +136,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
           <div class="relative">
             <!-- Background connecting line -->
             <div class="absolute top-6 left-10 right-10 h-1 bg-slate-100 rounded-full z-0 hidden md:block">
-              <div class="h-full bg-gradient-to-r from-emerald-500 via-[#800020] to-[#800020] rounded-full transition-all duration-700" [style.width]="getStepperProgressPercent() + '%'"></div>
+              <div class="h-full bg-gradient-to-r from-emerald-500 via-[#523F2B] to-[#523F2B] rounded-full transition-all duration-700" [style.width]="getStepperProgressPercent() + '%'"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative z-10">
@@ -210,14 +210,14 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         <!-- Card Left: Chi Tiết Sản Phẩm Trong Đơn -->
-        <div class="bg-white rounded-3xl p-6 border border-[#DCCAB1] shadow-sm space-y-4">
+        <div class="bg-white rounded-3xl p-6 border border-[#DDD3C5] shadow-sm space-y-4">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100">
             <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <span class="material-symbols-outlined text-[#800020] text-base">brush</span>
+              <span class="material-symbols-outlined text-[#523F2B] text-base">brush</span>
               Sản Phẩm Trong Đơn Hàng (#{{ currentOrderCode() }})
             </h3>
 
-            <a routerLink="/custom-studio" class="px-3 py-1 rounded-xl bg-purple-50 text-[#800020] text-xs font-bold hover:bg-purple-100 transition flex items-center gap-1">
+            <a routerLink="/custom-studio" class="px-3 py-1 rounded-xl bg-purple-50 text-[#523F2B] text-xs font-bold hover:bg-purple-100 transition flex items-center gap-1">
               <span class="material-symbols-outlined text-sm">palette</span>
               Custom Studio
             </a>
@@ -225,7 +225,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
 
           @if (activeOrder()?.greetingCard; as card) {
             <div class="mb-4 space-y-3">
-              <h4 class="text-sm font-bold text-[#3D2926]">Thiệp chúc mừng · {{ card.templateName }}</h4>
+              <h4 class="text-sm font-bold text-[#1A1A1A]">Thiệp chúc mừng · {{ card.templateName }}</h4>
               <p class="text-xs text-slate-500">Xưởng in thiệp và đặt kèm trong gói quà.</p>
               <app-greeting-card-preview [templateId]="card.templateId" [heading]="card.heading" [message]="card.message" />
             </div>
@@ -235,7 +235,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
             <div *ngFor="let item of getOrderItems()" class="flex items-start gap-4 p-3 bg-slate-50/70 rounded-2xl border border-slate-100">
               <div class="relative w-20 h-20 rounded-xl overflow-hidden bg-white border border-slate-200 shrink-0">
                 <img [src]="item.productImage || item.image || 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400'" [alt]="item.productName || item.name" class="w-full h-full object-cover">
-                <span *ngIf="item.isCustom" class="absolute top-1 left-1 px-1.5 py-0.2 rounded bg-[#800020] text-white text-[8px] font-bold uppercase">
+                <span *ngIf="item.isCustom" class="absolute top-1 left-1 px-1.5 py-0.2 rounded bg-[#D4AF37] text-[#1A1A1A] text-[8px] font-bold uppercase">
                   Custom
                 </span>
                 <span *ngIf="!item.isCustom" class="absolute top-1 left-1 px-1.5 py-0.2 rounded bg-blue-600 text-white text-[8px] font-bold uppercase">
@@ -247,7 +247,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
                 <h4 class="font-bold text-slate-900">{{ item.productName || item.name }} (x{{ item.quantity }})</h4>
                 <p class="text-[11px] text-slate-500">Phân loại: <strong class="text-slate-700">{{ item.variantName || 'Tiêu chuẩn' }}</strong></p>
                 
-                <div *ngIf="item.isCustom && item.customDetails" class="p-2 rounded-xl bg-purple-50 border border-purple-100 text-[11px] text-[#800020]">
+                <div *ngIf="item.isCustom && item.customDetails" class="p-2 rounded-xl bg-purple-50 border border-purple-100 text-[11px] text-[#523F2B]">
                   <span class="font-bold">Khắc:</span> "{{ item.customDetails.frontMessage || item.customDetails.customText || 'Theo mẫu' }}"
                   <span *ngIf="item.customDetails.fontFamily" class="block text-[10px] text-purple-500 font-mono">Font: {{ item.customDetails.fontFamily }}</span>
                 </div>
@@ -264,10 +264,10 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
         </div>
 
         <!-- Card Right: Thông Tin Giao Vận & Lịch Sử Timeline -->
-        <div class="bg-white rounded-3xl p-6 border border-[#DCCAB1] shadow-sm space-y-4">
+        <div class="bg-white rounded-3xl p-6 border border-[#DDD3C5] shadow-sm space-y-4">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100">
             <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-              <span class="material-symbols-outlined text-[#800020] text-base">near_me</span>
+              <span class="material-symbols-outlined text-[#523F2B] text-base">near_me</span>
               Hành Trình Giao Vận & Lịch Sử BP-04
             </h3>
             <span class="font-mono text-xs font-bold text-slate-500">#{{ getOrderTrackingCode() }}</span>

@@ -187,7 +187,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
         <div class="bg-white rounded-3xl p-6 border border-giftory-border shadow-xs space-y-6">
           <div class="flex items-center justify-between pb-2 border-b border-giftory-border/50">
             <div>
-              <h3 class="font-bold text-base text-[#3D2926]">Thư Viện Clipart Studio</h3>
+              <h3 class="font-bold text-base text-[#1A1A1A]">Thư Viện Clipart Studio</h3>
               <p class="text-xs text-slate-500 mt-0.5">Các clipart này hiển thị trực tiếp cho khách hàng lựa chọn để trang trí lên quà tặng tại Studio</p>
             </div>
             <div class="flex gap-2 flex-wrap">
@@ -388,7 +388,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
                   <!-- Variants Action Header -->
                   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#FAF7F0]/40 p-4 rounded-2xl border border-giftory-border/60">
                     <div>
-                      <h4 class="font-bold text-xs text-[#3D2926] uppercase tracking-wide flex items-center gap-1.5">
+                      <h4 class="font-bold text-xs text-[#1A1A1A] uppercase tracking-wide flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-[#612735] text-[18px]">view_list</span>
                         Bảng Quản Lý Biến Thể Màu & Tồn Kho (SKU)
                       </h4>
@@ -457,10 +457,10 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
                             </td>
                             <td class="p-3">
                               <div class="flex items-center gap-2">
-                                <span class="w-5 h-5 rounded-full border border-slate-300 shadow-2xs shrink-0" [style.backgroundColor]="v.colorHex || '#3D2926'"></span>
+                                <span class="w-5 h-5 rounded-full border border-slate-300 shadow-2xs shrink-0" [style.backgroundColor]="v.colorHex || '#1A1A1A'"></span>
                                 <div>
                                   <span class="font-bold text-slate-800 block">{{ v.name }}</span>
-                                  <span class="text-[10px] text-slate-400 font-mono">{{ v.colorHex || '#3D2926' }}</span>
+                                  <span class="text-[10px] text-slate-400 font-mono">{{ v.colorHex || '#1A1A1A' }}</span>
                                 </div>
                               </div>
                             </td>
@@ -550,7 +550,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
                 <div class="p-5 rounded-2xl bg-gradient-to-br from-purple-50/90 to-white border-2 border-[#612735]/30 space-y-4">
                   <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-[#612735]">palette</span>
-                    <h4 class="font-bold text-xs text-[#3D2926] uppercase tracking-wide">Cấu Hình Phôi Chế Tác Studio (Blank Config)</h4>
+                    <h4 class="font-bold text-xs text-[#1A1A1A] uppercase tracking-wide">Cấu Hình Phôi Chế Tác Studio (Blank Config)</h4>
                   </div>
 
                   <div class="space-y-3">
@@ -864,7 +864,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
               <div class="fixed inset-0 z-60 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
                 <div class="bg-white rounded-3xl p-6 max-w-lg w-full border border-purple-200 shadow-2xl space-y-4 animate-fade-in max-h-[90vh] overflow-y-auto">
                   <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <h4 class="font-bold text-sm text-[#3D2926] flex items-center gap-2">
+                    <h4 class="font-bold text-sm text-[#1A1A1A] flex items-center gap-2">
                       <span class="material-symbols-outlined text-[#612735]">palette</span>
                       {{ editingVariantIndex() !== null ? 'Chỉnh Sửa Biến Thể Màu' : 'Thêm Biến Thể Màu Mới' }}
                     </h4>
@@ -894,7 +894,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
                         <label class="text-xs font-bold text-giftory-ink">Mã màu Swatch (Hex) *</label>
                         <div class="flex items-center gap-2">
                           <input type="color" formControlName="colorHex" class="w-9 h-9 p-0.5 rounded-lg border border-slate-300 cursor-pointer shrink-0" />
-                          <input type="text" formControlName="colorHex" placeholder="#3D2926" class="flex-1 px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-mono text-xs font-bold text-slate-800" />
+                          <input type="text" formControlName="colorHex" placeholder="#1A1A1A" class="flex-1 px-3 py-2 bg-slate-50 rounded-xl border border-slate-300 font-mono text-xs font-bold text-slate-800" />
                         </div>
                       </div>
 
@@ -979,7 +979,7 @@ import { AdminCategoriesComponent } from '../categories/admin-categories.compone
         <div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
           <div class="bg-white rounded-3xl p-6 max-w-md w-full border border-purple-200 shadow-2xl space-y-4 animate-fade-in">
             <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-              <h3 class="font-bold text-base text-[#3D2926]">Thêm Clipart Vào Studio</h3>
+              <h3 class="font-bold text-base text-[#1A1A1A]">Thêm Clipart Vào Studio</h3>
               <button (click)="isAssetModalOpen.set(false)" class="text-slate-400 hover:text-slate-600 cursor-pointer">
                 <span class="material-symbols-outlined">close</span>
               </button>
