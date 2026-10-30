@@ -393,7 +393,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
                       class="w-12 h-12 rounded-xl object-cover border border-slate-100 shrink-0"
                     >
                     <div class="flex-1 min-w-0">
-                      <div class="font-semibold text-slate-800 truncate">{{ item.productId?.name || item.productName }}</div>
+                      <div class="font-semibold text-slate-800 truncate">{{ item.productId?.name || item.productName }}</div><p *ngIf="item.customDetails?.setbox" class="text-sm text-[#523F2B]">Setbox · {{ item.customDetails?.setbox?.styleName }} · {{ item.customDetails?.setbox?.id?.slice(0, 8) }}</p>
                       <div class="text-[11px] text-slate-400 flex items-center gap-1.5">SL: {{ item.quantity }} <span *ngIf="item.isCustom" class="px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold">Thiết kế riêng</span><span *ngIf="!item.isCustom" class="text-slate-400">• Có sẵn</span></div>
                     </div>
                     <span class="font-bold text-[#1A1A1A]">{{ ((item.price || item.unitPrice) * item.quantity) | number:'1.0-0' }}đ</span>

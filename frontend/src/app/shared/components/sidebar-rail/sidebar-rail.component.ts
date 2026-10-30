@@ -79,6 +79,7 @@ export class SidebarRailComponent {
   @ViewChild('avatarButton') avatarButton?: ElementRef<HTMLButtonElement>;
   menuOpen = signal(false);
   primaryLinks = [
+    { path: '/setbox', icon: 'redeem', label: 'Setbox', title: 'Tạo hộp quà của bạn' },
     { path: '/', icon: 'home', label: 'Trang chủ', title: 'Trang chủ Giftory' },
     { path: '/products', icon: 'grid_view', label: 'Quà tặng', title: 'Khám phá sản phẩm' },
     { path: '/custom-studio', icon: 'palette', label: 'Studio', title: 'Thiết kế quà cá nhân hóa' },

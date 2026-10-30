@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import Konva from 'konva';
+import { SetboxService } from '../../core/services/setbox.service';
 import { filterGraphics, graphicsForFace } from './graphics-library';
 import { CustomStudioService } from '../../core/services/custom-studio.service';
 import { CartService } from '../../core/services/cart.service';
@@ -597,6 +598,9 @@ type StudioToolTab = 'COLOR' | 'TEXT' | 'IMAGE' | 'GRAPHICS' | 'SUMMARY';
                 </div>
               </div>
 
+              @if (!isEditingCartItem() && !addingToSetbox()) {
+                <button type="button" (click)="addDesignToSetbox()" [disabled]="isFormInvalid()" class="w-full py-3 mb-3 rounded-xl border border-[#523F2B] font-bold text-[#523F2B]">Thêm thiết kế vào Setbox</button>
+              }
               <!-- Action Buttons -->
               <div class="flex items-center gap-2">
                 <button 
@@ -606,7 +610,7 @@ type StudioToolTab = 'COLOR' | 'TEXT' | 'IMAGE' | 'GRAPHICS' | 'SUMMARY';
                   [ngClass]="isFormInvalid() ? 'bg-slate-300 text-slate-500 cursor-not-allowed shadow-none' : 'bg-gradient-to-r from-[#800020] to-[#800020] hover:from-[#66001A] hover:to-[#7E22CE] shadow-purple-300'"
                 >
                   <span class="material-symbols-outlined text-[17px]">shopping_bag</span>
-                  <span>{{ isEditingCartItem() ? 'Cập Nhật Giỏ Hàng' : 'Thêm Vào Giỏ & Cọc 50%' }}</span>
+                  <span>{{ addingToSetbox() ? 'Thêm thiết kế vào Setbox' : isEditingCartItem() ? 'Cập Nhật Giỏ Hàng' : 'Thêm Vào Giỏ & Cọc 50%' }}</span>
                 </button>
 
                 <button 
@@ -927,6 +931,8 @@ export class CustomStudioComponent implements OnInit, AfterViewInit, OnDestroy {
   authService = inject(AuthService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private setbox = inject(SetboxService);
+  addingToSetbox = signal(false);
 
   // Active Tool Tab in Left Drawer
   activeToolTab = signal<StudioToolTab>('TEXT');
@@ -1254,6 +1260,7 @@ export class CustomStudioComponent implements OnInit, AfterViewInit, OnDestroy {
         this.templates.set(tpls);
         if (tpls.length > 0) {
           this.route.queryParams.subscribe(params => {
+            this.addingToSetbox.set(params['setbox'] === '1');
             const requestedProduct = params['product'] || params['productId'];
             const cartIndex = params['cartItemIndex'];
             this.requestedProductNotFound.set(false);
@@ -2477,7 +2484,22 @@ export class CustomStudioComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
+  addDesignToSetbox(): void {
+    if (!this.validateInputs()) return;
+    const product = this.activeTemplate();
+    if (!product) return;
+    const customDetails = this.getConfirmedCustomDetails();
+    this.saveStudioDesignId(product, customDetails, customDesignId => {
+      try {
+        this.setbox.add({ product, quantity: 1, customDesignId, customDetails });
+        this.studioService.clearDraftFromStorage();
+        this.router.navigate(['/setbox']);
+      } catch { alert('Không lưu được Setbox. Vui lòng kiểm tra dung lượng lưu trữ của trình duyệt.'); }
+    }, err => alert(err.error?.message || 'Không lưu được thiết kế. Vui lòng thử lại.'));
+  }
+
   onPrimaryActionClick(): void {
+    if (this.addingToSetbox()) { this.addDesignToSetbox(); return; }
     if (!this.validateInputs()) {
       return;
     }

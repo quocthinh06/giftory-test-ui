@@ -124,6 +124,7 @@ import { AuthService } from '../../core/services/auth.service';
 
                   <!-- Details -->
                   <div class="flex-1 min-w-0">
+<p *ngIf="item.customDetails?.setbox" class="text-sm text-[#523F2B]">Setbox · {{ item.customDetails?.setbox?.styleName }} · {{ item.customDetails?.setbox?.id?.slice(0, 8) }}</p>
                     <!-- Badges & Delete -->
                     <div class="flex items-center justify-between gap-2 mb-1">
                       @if (item.isCustom) {

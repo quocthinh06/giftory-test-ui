@@ -233,6 +233,7 @@ export interface CartItem {
   image?: string;
   customDesignId?: string;
   customDetails?: {
+    setbox?: { id: string; styleId: string; styleName: string };
     textBlocks?: StudioTextBlock[];
     frontMessage?: string;
     backMessage?: string;

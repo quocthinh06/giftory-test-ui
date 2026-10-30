@@ -43,6 +43,14 @@ export class CartService {
   }
 
   async addItem(dto: AddToCartDto, userId?: string) {
+    if (dto.customDetails?.setbox !== undefined) {
+      const box = dto.customDetails.setbox;
+      const styles = { cream: 'Kem thanh lịch', walnut: 'Nâu óc chó', charcoal: 'Đen than' };
+      if (!box || typeof box.id !== 'string' || !/^[a-zA-Z0-9-]{1,64}$/.test(box.id) || !Object.hasOwn(styles, box.styleId)) {
+        throw new BadRequestException('Thông tin hộp quà không hợp lệ');
+      }
+      dto.customDetails.setbox = { id: box.id, styleId: box.styleId, styleName: styles[box.styleId] };
+    }
     const product = await this.productModel.findById(dto.productId);
     if (!product) {
       throw new NotFoundException('Sản phẩm không tồn tại');
@@ -56,8 +64,9 @@ export class CartService {
     if (variant && (variant.status === 'HIDDEN' || variant.status === 'OUT_OF_STOCK')) throw new BadRequestException('Biến thể đã hết hàng');
     const stock = variant ? variant.stock : product.stock;
     const cart = await this.findOrCreateCart(userId, dto.sessionId);
+    const setboxId = (details: any) => details?.setbox?.id || '';
     const inCart = cart.items.filter(item => item.productId.toString() === dto.productId &&
-      (isStudioItem ? item.isCustom && !item.variantSku && JSON.stringify(item.customDetails) === JSON.stringify(dto.customDetails) : !item.isCustom && (variant?.sku ? item.variantSku === variant.sku : item.variantName === (variant?.name || 'Tiêu chuẩn'))))
+      (isStudioItem ? item.isCustom && !item.variantSku : !item.isCustom && (variant?.sku ? item.variantSku === variant.sku : item.variantName === (variant?.name || 'Tiêu chuẩn'))))
       .reduce((sum, item) => sum + item.quantity, 0);
     if (!Number.isInteger(dto.quantity) || dto.quantity < 1 || dto.quantity + inCart > stock) throw new BadRequestException('Số lượng vượt quá tồn kho');
 
@@ -72,7 +81,7 @@ export class CartService {
     const existingIndex = cart.items.findIndex(item => 
       item.productId.toString() === dto.productId &&
       (variant?.sku ? item.variantSku === variant.sku : item.variantName === (variant?.name || 'Tiêu chuẩn')) &&
-      !isCustom && !item.isCustom
+      setboxId(item.customDetails) === setboxId(dto.customDetails) && !isCustom && !item.isCustom
     );
 
     if (existingIndex > -1) {
@@ -178,7 +187,7 @@ export class CartService {
     const finalPrice = isCustom ? studioUnitPrice(product, customDetails) : (product.salePrice || product.price);
     const depositAmount = Math.round(finalPrice * 0.5);
 
-    item.customDetails = customDetails;
+    item.customDetails = { ...customDetails, ...(item.customDetails?.setbox ? { setbox: item.customDetails.setbox } : {}) };
     // Studio blank color belongs to customDetails, never to the sales variant.
     if (isCustom) {
       item.variantName = 'Tiêu chuẩn';

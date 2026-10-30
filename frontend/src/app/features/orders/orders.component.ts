@@ -247,7 +247,7 @@ import { GreetingCardPreviewComponent } from '../../shared/components/greeting-c
                 <h4 class="font-bold text-slate-900">{{ item.productName || item.name }} (x{{ item.quantity }})</h4>
                 <p class="text-[11px] text-slate-500">Phân loại: <strong class="text-slate-700">{{ item.variantName || 'Tiêu chuẩn' }}</strong></p>
                 
-                <div *ngIf="item.isCustom && item.customDetails" class="p-2 rounded-xl bg-purple-50 border border-purple-100 text-[11px] text-[#523F2B]">
+                <p *ngIf="item.customDetails?.setbox" class="text-sm text-[#523F2B]">Setbox · {{ item.customDetails?.setbox?.styleName }} · {{ item.customDetails?.setbox?.id?.slice(0, 8) }}</p><div *ngIf="item.isCustom && item.customDetails" class="p-2 rounded-xl bg-purple-50 border border-purple-100 text-[11px] text-[#523F2B]">
                   <span class="font-bold">Khắc:</span> "{{ item.customDetails.frontMessage || item.customDetails.customText || 'Theo mẫu' }}"
                   <span *ngIf="item.customDetails.fontFamily" class="block text-[10px] text-purple-500 font-mono">Font: {{ item.customDetails.fontFamily }}</span>
                 </div>
