@@ -26,7 +26,7 @@ export class CartItem {
 
   @Prop({ type: Object, default: null })
   customDetails?: {
-    setbox?: { id: string; styleId: string; styleName: string };
+    setbox?: { id: string; styleId: string; styleName: string; engravingName?: string; engravingMessage?: string };
     message?: string;
     fontFamily?: string;
     engraveColor?: string;

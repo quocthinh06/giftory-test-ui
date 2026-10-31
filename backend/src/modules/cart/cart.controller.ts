@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CartService } from './cart.service';
+import { UpdateSetboxDto } from './dto/update-setbox.dto';
 import { AddToCartDto } from './dto/add-to-cart.dto';
 import { OptionalJwtAuthGuard } from '../../common/guards/optional-jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
@@ -41,6 +42,14 @@ export class CartController {
     @CurrentUser('sub') userId?: string
   ) {
     return this.cartService.addItem(dto, userId);
+  }
+
+  @Patch('setbox')
+  @UseGuards(OptionalJwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Ghép hoặc bỏ sản phẩm khỏi Setbox và cập nhật mẫu hộp, yêu cầu khắc' })
+  async updateSetbox(@Body() dto: UpdateSetboxDto, @CurrentUser('sub') userId?: string) {
+    return this.cartService.updateSetbox(dto.itemIds, dto.setbox, userId, dto.sessionId);
   }
 
   @Patch('items/:index')

@@ -52,7 +52,7 @@ const { SetboxComponent } = load('features/setbox/setbox.component.ts', {
   assert.equal(submitted[0].customDetails.setbox.id, submitted[1].customDetails.setbox.id);
   assert.equal(submitted[1].customDesignId, 'design-id');
   assert.equal(submitted[1].customDetails.setbox.styleName, 'Nâu óc chó');
-  assert.deepEqual(navigated, ['/checkout']);
+  assert.deepEqual(navigated, ['/cart']);
   assert.equal(box.lines().length, 0);
   assert.equal(box.committed(), false);
   const { CustomStudioComponent } = load('features/custom-studio/custom-studio.component.ts', {
@@ -65,10 +65,12 @@ const { SetboxComponent } = load('features/setbox/setbox.component.ts', {
   studio.getConfirmedCustomDetails = () => customDetails;
   studio.saveStudioDesignId = (tpl, details, callback) => callback('saved-design');
   studio.studioService = { clearDraftFromStorage() {} };
-  studio.addingToSetbox.set(true);
+  let cartPayload;
+  studio.cartService = { addItem: payload => { cartPayload = payload; return rx.of({}); } };
   studio.onPrimaryActionClick();
-  assert.equal(box.lines()[0].customDesignId, 'saved-design');
-  assert.deepEqual(box.lines()[0].customDetails, customDetails);
-  assert.deepEqual(navigated, ['/setbox'], 'Studio primary action returns to the builder');
+  assert.equal(cartPayload.customDesignId, 'saved-design');
+  assert.deepEqual(cartPayload.customDetails, customDetails);
+  assert.equal(box.lines().length, 0, 'Studio does not force a box selection');
+  assert.deepEqual(navigated, ['/cart'], 'Studio opens cart for optional Setbox selection');
   console.log('Setbox: draft restore, drag/drop data, total, partial failures, retry, group identity and checkout passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });

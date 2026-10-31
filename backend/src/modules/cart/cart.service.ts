@@ -1,3 +1,4 @@
+import { normalizeSetbox } from '../../common/utils/setbox';
 import { VouchersService } from '../vouchers/vouchers.service';
 import { shippingPrice } from '../vouchers/voucher.rules';
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
@@ -43,14 +44,7 @@ export class CartService {
   }
 
   async addItem(dto: AddToCartDto, userId?: string) {
-    if (dto.customDetails?.setbox !== undefined) {
-      const box = dto.customDetails.setbox;
-      const styles = { cream: 'Kem thanh lịch', walnut: 'Nâu óc chó', charcoal: 'Đen than' };
-      if (!box || typeof box.id !== 'string' || !/^[a-zA-Z0-9-]{1,64}$/.test(box.id) || !Object.hasOwn(styles, box.styleId)) {
-        throw new BadRequestException('Thông tin hộp quà không hợp lệ');
-      }
-      dto.customDetails.setbox = { id: box.id, styleId: box.styleId, styleName: styles[box.styleId] };
-    }
+    if (dto.customDetails?.setbox !== undefined) dto.customDetails.setbox = normalizeSetbox(dto.customDetails.setbox);
     const product = await this.productModel.findById(dto.productId);
     if (!product) {
       throw new NotFoundException('Sản phẩm không tồn tại');
@@ -104,6 +98,27 @@ export class CartService {
 
     await cart.save();
     return this.getCart(userId, dto.sessionId);
+  }
+
+  async updateSetbox(itemIds: string[], box: any, userId?: string, sessionId?: string) {
+    if (!Array.isArray(itemIds) || !itemIds.length || itemIds.length > 100 ||
+        itemIds.some(id => typeof id !== 'string' || !Types.ObjectId.isValid(id)) || new Set(itemIds).size !== itemIds.length) {
+      throw new BadRequestException('Danh sách sản phẩm không hợp lệ');
+    }
+    const metadata = box === null ? null : normalizeSetbox(box);
+    const cart = await this.findOrCreateCart(userId, sessionId);
+    const selected = cart.items.filter(item => itemIds.includes(String((item as any)._id)));
+    if (selected.length !== itemIds.length) throw new NotFoundException('Giỏ hàng đã thay đổi. Vui lòng tải lại và chọn lại sản phẩm.');
+    // Update the whole destination box together so its style and engraving stay consistent.
+    for (const item of cart.items) {
+      if (!selected.includes(item) && (!metadata || item.customDetails?.setbox?.id !== metadata.id)) continue;
+      const details = { ...item.customDetails };
+      if (metadata) details.setbox = { ...metadata };
+      else delete details.setbox;
+      item.customDetails = Object.keys(details).length ? details : null;
+    }
+    await cart.save();
+    return this.getCart(userId, sessionId);
   }
 
   async updateItemQuantity(itemIndex: number, quantity: number, userId?: string, sessionId?: string) {
@@ -187,7 +202,9 @@ export class CartService {
     const finalPrice = isCustom ? studioUnitPrice(product, customDetails) : (product.salePrice || product.price);
     const depositAmount = Math.round(finalPrice * 0.5);
 
-    item.customDetails = { ...customDetails, ...(item.customDetails?.setbox ? { setbox: item.customDetails.setbox } : {}) };
+    const designDetails = { ...customDetails };
+    delete designDetails.setbox;
+    item.customDetails = { ...designDetails, ...(item.customDetails?.setbox ? { setbox: item.customDetails.setbox } : {}) };
     // Studio blank color belongs to customDetails, never to the sales variant.
     if (isCustom) {
       item.variantName = 'Tiêu chuẩn';

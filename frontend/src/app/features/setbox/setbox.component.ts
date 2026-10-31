@@ -35,12 +35,12 @@ import { SetboxLine, SetboxService } from '../../core/services/setbox.service';
           } @empty { <p class="py-5 text-[#523F2B]">Hộp đang trống. Chọn sản phẩm ở bên cạnh để bắt đầu.</p> }
           <div class="flex justify-between font-bold text-lg mt-5"><span>Tạm tính</span><span>{{ total() | number:'1.0-0' }}đ</span></div>
           <p class="text-sm text-[#523F2B] my-3">COD: chỉ cọc 50% giá trị hàng customized. Phí vận chuyển và ưu đãi được tính khi thanh toán.</p>
-          <button type="button" (click)="checkout()" [disabled]="submitting() || !box.lines().length && !box.committed()" class="w-full bg-[#D4AF37] text-[#1A1A1A] font-bold py-4 rounded-lg">{{ submitting() ? 'Đang thêm vào giỏ…' : 'Thêm Setbox & thanh toán' }}</button>
+          <button type="button" (click)="checkout()" [disabled]="submitting() || !box.lines().length && !box.committed()" class="w-full bg-[#D4AF37] text-[#1A1A1A] font-bold py-4 rounded-lg">{{ submitting() ? 'Đang thêm vào giỏ…' : 'Thêm Setbox & xem giỏ hàng' }}</button>
           <p class="text-sm mt-3">Thanh toán bao gồm các sản phẩm đang có trong giỏ.</p>
           @if (error()) { <p role="alert" class="text-red-800 mt-4">{{ error() }}</p> }
         </section>
         <section aria-labelledby="products-heading">
-          <div class="flex flex-wrap justify-between items-center gap-3 mb-5"><h2 id="products-heading" class="text-xl font-bold">Chọn sản phẩm</h2><a routerLink="/custom-studio" [queryParams]="{setbox: '1'}" class="underline font-semibold">Mở Studio kéo thả</a></div>
+          <div class="flex flex-wrap justify-between items-center gap-3 mb-5"><h2 id="products-heading" class="text-xl font-bold">Chọn sản phẩm</h2><a routerLink="/custom-studio" class="underline font-semibold">Mở Studio kéo thả</a></div>
           <label for="setbox-search" class="block text-sm font-semibold mb-2">Tìm sản phẩm</label>
           <input id="setbox-search" [(ngModel)]="search" (keyup.enter)="load(1)" type="search" placeholder="Nhập tên sản phẩm, nhấn Enter" class="w-full p-3 border border-[#DDD3C5] rounded-lg bg-white mb-4">
           <button type="button" (click)="load(1)" class="underline mb-4">Tìm kiếm</button>
@@ -54,7 +54,7 @@ import { SetboxLine, SetboxService } from '../../core/services/setbox.service';
                   <select [attr.aria-label]="'Phân loại ' + product.name" [(ngModel)]="variants[product._id]" class="border rounded p-2 w-full mb-3"><option value="">Chọn phân loại</option>@for (variant of availableVariants(product); track $index) { <option [value]="$index">{{ variant.name }} — {{ variant.price | number:'1.0-0' }}đ</option> }</select>
                 }
                 <div class="flex flex-wrap items-center gap-3"><button type="button" (click)="add(product)" [disabled]="submitting() || !canAdd(product)" class="bg-[#2B2B2B] text-white px-4 py-2 rounded-lg">Thêm vào hộp</button>
-                @if (product.isCustomizable) { <a routerLink="/custom-studio" [queryParams]="{productId: product._id, setbox: '1'}" class="underline text-sm">Thiết kế trong Studio</a> }</div>
+                @if (product.isCustomizable) { <a routerLink="/custom-studio" [queryParams]="{productId: product._id}" class="underline text-sm">Thiết kế trong Studio</a> }</div>
               </div>
             </article>
           } @empty { @if (!loading() && !catalogError()) { <p class="py-8">Không có sản phẩm phù hợp.</p> } }
@@ -117,7 +117,7 @@ export class SetboxComponent {
       await firstValueFrom(this.cart.setPaymentMode('DEPOSIT_50'));
       this.cart.clearBuyNowItem();
       this.box.groupId = crypto.randomUUID(); this.box.committed.set(false); this.box.persist();
-      await this.router.navigate(['/checkout']);
+      await this.router.navigate(['/cart']);
     } catch (err: any) { this.error.set(err.error?.message || 'Chưa thêm được toàn bộ Setbox. Các món đã thêm nằm trong giỏ; vui lòng thử lại cho các món còn lại.'); }
     finally { this.submitting.set(false); }
   }

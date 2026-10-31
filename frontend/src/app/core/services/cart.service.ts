@@ -35,6 +35,7 @@ export class CartService {
     totalCustomItems: 0
   });
   paymentMode = computed(() => this.cart()?.paymentMode || 'DEPOSIT_50');
+  setboxSyncPending = signal(false);
   quantitySyncPending = signal(false);
   voucherSyncPending = signal(false);
   quantityError = signal<string | null>(null);
@@ -213,6 +214,16 @@ export class CartService {
       clearTimeout(this.quantityTimer);
       this.quantityTimer = setTimeout(() => this.flushQuantityUpdates(), 200);
       return of(this.cart()!);
+    });
+  }
+
+  updateSetbox(itemIds: string[], setbox: NonNullable<CartItem['customDetails']>['setbox'] | null) {
+    return defer(() => {
+      this.setboxSyncPending.set(true);
+      return from(this.waitForQuantityUpdates()).pipe(
+        switchMap(() => this.mutate(() => this.api.patch<Cart>('cart/setbox', { itemIds, setbox, sessionId: this.getSessionId() }))),
+        finalize(() => this.setboxSyncPending.set(false)),
+      );
     });
   }
 

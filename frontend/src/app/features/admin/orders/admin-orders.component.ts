@@ -392,7 +392,7 @@ import { Order, OrderItemDetail } from '../../../core/models';
                       <span class="font-bold text-slate-900 text-xs">{{ item.productName || item.name }}</span>
                     </div>
 
-                    <p *ngIf="item.customDetails?.setbox" class="text-sm text-[#523F2B]">Setbox · {{ item.customDetails?.setbox?.styleName }} · {{ item.customDetails?.setbox?.id?.slice(0, 8) }}</p><span class="text-[11px] text-slate-500 block mt-0.5">Phân loại: {{ item.variantName || 'Tiêu chuẩn' }} • SL: {{ item.quantity }}</span>
+                    <p *ngIf="item.customDetails?.setbox" class="text-sm text-[#523F2B]">Setbox · {{ item.customDetails?.setbox?.styleName }} · {{ item.customDetails?.setbox?.id?.slice(0, 8) }}</p><p *ngIf="item.customDetails?.setbox?.engravingName" class="text-xs text-[#523F2B] break-words">Khắc tên hộp: {{ item.customDetails?.setbox?.engravingName }}</p><p *ngIf="item.customDetails?.setbox?.engravingMessage" class="text-xs text-[#523F2B] whitespace-pre-wrap break-words">Lời chúc trên hộp: {{ item.customDetails?.setbox?.engravingMessage }}</p><span class="text-[11px] text-slate-500 block mt-0.5">Phân loại: {{ item.variantName || 'Tiêu chuẩn' }} • SL: {{ item.quantity }}</span>
 
                     <!-- Custom details highlight if bespoke -->
                     <div *ngIf="item.isCustom && item.customDetails" class="mt-1 flex items-center gap-2 text-[11px] text-[#612735] bg-purple-50/80 px-2 py-0.5 rounded-md border border-purple-100">
